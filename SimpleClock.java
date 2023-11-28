@@ -1,18 +1,10 @@
-//package SimpleClock;
-
 import javax.swing.*;
-import javax.swing.border.Border;
-import javax.swing.border.EmptyBorder;
 import java.awt.*;
 import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 import java.text.SimpleDateFormat;
-import java.time.ZoneId;
-import java.time.ZonedDateTime;
 import java.util.Calendar;
 import java.util.TimeZone;
 
-import static javax.swing.UIManager.getBorder;
 
 
 public class SimpleClock extends JFrame {
@@ -42,7 +34,6 @@ public class SimpleClock extends JFrame {
         this.setLayout(new FlowLayout());
         this.setSize(400, 300);
         this.setResizable(false);
-//            this.setBounds(300,300,600,300);
         this.setVisible(true);
 
 
@@ -65,13 +56,11 @@ public class SimpleClock extends JFrame {
 
 
         this.militaryTime = new JButton("12/24 Hour");
-//            militaryTime.setBounds(50,100,100,30);
         militaryTime.addActionListener(this::militaryStandard);
 
         this.estTime = new JButton("Local/GMT");
         estTime.addActionListener(this::estTime);
 
-//            ZonedDateTime zdt = ZonedDateTime.ofInstant(ZoneId.systemDefault());
 
         this.add(timeLabel);
         this.add(dayLabel);
@@ -81,19 +70,6 @@ public class SimpleClock extends JFrame {
         this.add(militaryTime);
         this.add(estTime);
 
-//            setTimer();
-
-
-        //button
-//            time.addActionListener(new java.awt.event.ActionListener() {
-//                @Override
-//                public void actionPerformed(ActionEvent e) {
-////                    jButton24H(evt);
-//                    time.setVisible(true);
-////                    contentPane.add(time,BorderLayout.CENTER);
-//
-//                }
-//            });
 
         Thread clockThread = new Thread(() -> {
             while (true) {
@@ -124,9 +100,6 @@ public class SimpleClock extends JFrame {
     private void estTime(ActionEvent actionEvent) {
         if (isEST) {
             timeFormat = new SimpleDateFormat("hh:mm:ss a");
-
-//                timeFormat = TimeZone.getTimeZone("GMT");
-//                gmt.setTimeZone(TimeZone.getTimeZone("GMT+6:00"));
             isEST = false;
         } else {
             timeFormat.setTimeZone(TimeZone.getTimeZone("GMT"));
@@ -146,31 +119,6 @@ public class SimpleClock extends JFrame {
 
     }
 
-//    public void jButton24H(java.awt.event.ActionEvent evt) {
-//            timeFormat = new SimpleDateFormat("HH:mm:ss a");
-//        }
-//
-
-
-    //        public void setTimer() {
-//            while (true) {
-//                time = timeFormat.format(Calendar.getInstance().getTime());
-//                timeLabel.setText(time);
-//
-//                day = dayFormat.format(Calendar.getInstance().getTime());
-//                dayLabel.setText(day);
-//
-//                date = dateFormat.format(Calendar.getInstance().getTime());
-//                dateLabel.setText(date);
-//
-//
-//                try {
-//                    Thread.sleep(1000);
-//                } catch (Exception e) {
-//                    e.getStackTrace();
-//                }
-//            }
-//        }
     public static void main(String[] args) {
         new SimpleClock();
     }
